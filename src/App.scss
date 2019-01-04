@@ -293,6 +293,22 @@ $shadow-sm: 0 2px $window-border-sm rgba($black,0.3);
       }
 
     }
+    > li:first-child {
+      .floor {
+        .window-block {
+          .balcony {
+            &:after {
+              @extend .absolute;
+              top: -($window-size*0.66);
+              height: $window-border*2;
+              background: $orange;
+              z-index: 5;
+            }
+          }
+        }
+      }
+
+    }
   }
   .block-footer {
     border-top: $window-border-sm solid darken($purple, 16%);
