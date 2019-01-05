@@ -65,8 +65,20 @@ function Glazing(props) {
   );
 }
 
+function H1() {
+  return (
+    <h1>Девятиэтажка</h1>
+  );
+}
+
+function Copyright() {
+  return (
+    <p>by <a href="http://dolampochki.com>">@dolampochki</a></p>
+  );
+}
+
 function Window(props) {
-  var windowBlockClass = "window-block " + "purple " + props.wide + " " + props.halfWindowType;
+  var windowBlockClass = "window-block " + props.wide + " " + props.halfWindowType;
   var glassDoor = props.balcony ? <GlassDoor /> : '';
   var balcony = props.balcony ? <Balcony /> : '';
   var glassFull = props.balcony && props.wide == 'narrow' ? '' : <GlassFull />;
@@ -153,14 +165,26 @@ class FullBlock extends Component {
 class App extends Component {
   createBuilding = () => {
     let building = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 4; i++) {
       building.push(<FullBlock />)
     }
     return building
   }
+  buildingClasses = () => {
+    var randomNum = Math.random();
+    var buildingClasses = "building ";
+    buildingClasses += randomNum >0.7 ? "purple" : '';
+    buildingClasses += randomNum >=0.4 && randomNum <= 0.7 ? "blue" : '';
+    buildingClasses += randomNum <0.4 ? "green" : '';
+    return buildingClasses
+  }
   render() {
     return(
-      <div className="building">{this.createBuilding()}</div>
+      <div>
+        <H1 />
+        <div className={this.buildingClasses()}>{this.createBuilding()}</div>
+        <Copyright />
+      </div>
     )
   }
 }
